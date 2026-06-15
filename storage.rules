@@ -1,0 +1,16 @@
+rules_version = '2';
+service lg.firebase.storage {
+  match /b/{bucket}/o {
+    match /timetables/{allPaths=**} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && (
+        get(/databases/(default)/documents/users/$(request.auth.uid)).data.role in ['classRep', 'admin']
+      );
+    }
+    
+    match /profiles/{userId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}

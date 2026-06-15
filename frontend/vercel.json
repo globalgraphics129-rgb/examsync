@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "framework": "vite",
+  "functions": {
+    "api/*.ts": {
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    { "source": "/api/send-otp", "destination": "/api/send-otp" },
+    { "source": "/api/parse", "destination": "/api/parse" },
+    { "source": "/api/chat", "destination": "/api/chat" },
+    { "source": "/api/correct-data", "destination": "/api/correct-data" },
+    { "source": "/api/reset-password", "destination": "/api/reset-password" },
+    { "source": "/api/notify-suggestion", "destination": "/api/notify-suggestion" },
+    { "source": "/api/signup", "destination": "/api/signup" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
+      ]
+    }
+  ]
+}

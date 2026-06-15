@@ -1,0 +1,1078 @@
+{
+  "University of Ilorin": {
+    "Faculty of Agriculture": {
+      "Agricultural Extension and Rural Development": {
+        "Harmattan (1st)": [
+          "AER 101",
+          "AGR 101",
+          "CHM 112",
+          "BIO 101",
+          "MTH 111",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "AER 102",
+          "CHM 111",
+          "PHY 115",
+          "BIO 102",
+          "GNS 111"
+        ]
+      },
+      "Agriculture": {
+        "Harmattan (1st)": [
+          "AGR 101",
+          "CHM 111",
+          "PHY 115",
+          "BIO 102",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "AGR 102",
+          "CHM 112",
+          "BIO 101",
+          "MTH 111",
+          "GNS 112"
+        ]
+      },
+      "Agronomy": {
+        "Harmattan (1st)": [
+          "AGR 101",
+          "CHM 111",
+          "PHY 115",
+          "BIO 102",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "AGR 102",
+          "CHM 112",
+          "BIO 101",
+          "MTH 111",
+          "GNS 112"
+        ]
+      },
+      "Animal Production": {
+        "Harmattan (1st)": [
+          "ANP 101",
+          "AGR 101",
+          "CHM 112",
+          "BIO 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "ANP 102",
+          "CHM 111",
+          "PHY 115",
+          "BIO 102",
+          "GNS 112"
+        ]
+      },
+      "Crop Protection": {
+        "Harmattan (1st)": [
+          "CRP 101",
+          "AGR 101",
+          "CHM 112",
+          "BIO 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "CRP 102",
+          "CHM 111",
+          "PHY 115",
+          "BIO 102",
+          "GNS 112"
+        ]
+      },
+      "Home Economics and Food Science": {
+        "Harmattan (1st)": [
+          "HEF 101",
+          "CHM 111",
+          "PHY 115",
+          "BIO 102",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "HEF 102",
+          "CHM 112",
+          "BIO 101",
+          "GNS 111"
+        ]
+      }
+    },
+    "Faculty of Arts": {
+      "Arabic": {
+        "Harmattan (1st)": [
+          "ARA 101",
+          "ARA 103",
+          "GNS 111",
+          "ENG 101"
+        ],
+        "Rain (2nd)": [
+          "ARA 102",
+          "ARA 104",
+          "GNS 112"
+        ]
+      },
+      "English": {
+        "Harmattan (1st)": [
+          "ENG 101",
+          "ENG 103",
+          "ENG 105",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "ENG 102",
+          "ENG 104",
+          "ENG 106",
+          "GNS 112"
+        ]
+      },
+      "French": {
+        "Harmattan (1st)": [
+          "FRE 101",
+          "FRE 103",
+          "GNS 111",
+          "ENG 101"
+        ],
+        "Rain (2nd)": [
+          "FRE 102",
+          "FRE 104",
+          "GNS 112"
+        ]
+      },
+      "History and International Studies": {
+        "Harmattan (1st)": [
+          "HIS 101",
+          "HIS 103",
+          "HIS 105",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "HIS 102",
+          "HIS 104",
+          "GNS 111"
+        ]
+      },
+      "Linguistics and Nigerian Languages": {
+        "Harmattan (1st)": [
+          "LIN 101",
+          "LIN 103",
+          "IGB 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "LIN 102",
+          "YOR 101",
+          "HAU 101",
+          "GNS 112"
+        ]
+      },
+      "Performing Arts": {
+        "Harmattan (1st)": [
+          "PFA 101",
+          "PFA 103",
+          "GNS 111",
+          "ENG 101"
+        ],
+        "Rain (2nd)": [
+          "PFA 102",
+          "PFA 104",
+          "GNS 112"
+        ]
+      },
+      "Religions": {
+        "Harmattan (1st)": [
+          "REL 101",
+          "CRS 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "REL 102",
+          "ISS 101",
+          "GNS 112"
+        ]
+      }
+    },
+    "Faculty of Basic Medical Sciences": {
+      "Anatomy": {
+        "Harmattan (1st)": [
+          "ANA 101",
+          "PHY 115",
+          "CHM 112",
+          "BIO 102",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "ANA 102",
+          "CHM 111",
+          "BIO 101",
+          "GNS 111"
+        ]
+      },
+      "Physiology": {
+        "Harmattan (1st)": [
+          "PIO 101",
+          "PHY 115",
+          "CHM 112",
+          "BIO 102",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "PIO 102",
+          "CHM 111",
+          "BIO 101",
+          "GNS 111"
+        ]
+      }
+    },
+    "Faculty of Clinical Sciences": {
+      "Medicine and Surgery": {
+        "Harmattan (1st)": [
+          "MED 101",
+          "PHY 115",
+          "CHM 112",
+          "BIO 102",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "MED 102",
+          "CHM 111",
+          "BIO 101",
+          "GNS 111"
+        ]
+      },
+      "Nursing Science": {
+        "Harmattan (1st)": [
+          "NUR 101",
+          "PHY 115",
+          "CHM 112",
+          "BIO 102",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "NUR 102",
+          "CHM 111",
+          "BIO 101",
+          "GNS 111"
+        ]
+      }
+    },
+    "Faculty of Communication and Information Sciences": {
+      "Computer Science": {
+        "Harmattan (1st)": [
+          "CSC 111",
+          "CSC 113",
+          "MTH 111",
+          "PHY 115",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "CSC 112",
+          "CSC 114",
+          "MTH 112",
+          "STA 111",
+          "GNS 112"
+        ]
+      },
+      "Information and Communication Science": {
+        "Harmattan (1st)": [
+          "ICS 101",
+          "CSC 111",
+          "PHY 115",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "ICS 102",
+          "MTH 111",
+          "GNS 111"
+        ]
+      },
+      "Library and Information Science": {
+        "Harmattan (1st)": [
+          "LIS 101",
+          "LIS 103",
+          "GNS 111",
+          "CSC 111"
+        ],
+        "Rain (2nd)": [
+          "LIS 102",
+          "LIS 104",
+          "GNS 112"
+        ]
+      },
+      "Mass Communication": {
+        "Harmattan (1st)": [
+          "MAC 101",
+          "MAC 103",
+          "ENG 101",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "MAC 102",
+          "MAC 104",
+          "GNS 111"
+        ]
+      },
+      "Telecommunication Science": {
+        "Harmattan (1st)": [
+          "TCS 101",
+          "MTH 111",
+          "CSC 111",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "TCS 102",
+          "PHY 115",
+          "GNS 111"
+        ]
+      }
+    },
+    "Faculty of Education": {
+      "Adult and Primary Education": {
+        "Harmattan (1st)": [
+          "EDU 101",
+          "ADE 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "EDU 102",
+          "ADE 102",
+          "GNS 112"
+        ]
+      },
+      "Arts Education": {
+        "Harmattan (1st)": [
+          "EDU 101",
+          "AED 101",
+          "HIS 101",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "EDU 102",
+          "ENG 101",
+          "GNS 111"
+        ]
+      },
+      "Counselor Education": {
+        "Harmattan (1st)": [
+          "EDU 101",
+          "CDE 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "EDU 102",
+          "CDE 102",
+          "GNS 112"
+        ]
+      },
+      "Educational Management": {
+        "Harmattan (1st)": [
+          "EDU 101",
+          "EDM 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "EDU 102",
+          "EDM 102",
+          "GNS 112"
+        ]
+      },
+      "Educational Technology": {
+        "Harmattan (1st)": [
+          "EDU 101",
+          "EDT 101",
+          "CSC 111",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "EDU 102",
+          "EDT 102",
+          "GNS 111"
+        ]
+      },
+      "Health Promotion and Environmental Health Education": {
+        "Harmattan (1st)": [
+          "EDU 101",
+          "HED 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "EDU 102",
+          "HED 102",
+          "GNS 112"
+        ]
+      },
+      "Human Kinetics Education": {
+        "Harmattan (1st)": [
+          "EDU 101",
+          "HKE 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "EDU 102",
+          "HKE 102",
+          "GNS 112"
+        ]
+      },
+      "Science Education": {
+        "Harmattan (1st)": [
+          "EDU 101",
+          "SED 101",
+          "CHM 111",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "EDU 102",
+          "BIO 101",
+          "PHY 115",
+          "GNS 112"
+        ]
+      },
+      "Social Sciences Education": {
+        "Harmattan (1st)": [
+          "EDU 101",
+          "SSE 101",
+          "POL 101",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "EDU 102",
+          "ECO 101",
+          "GNS 111"
+        ]
+      }
+    },
+    "Faculty of Engineering and Technology": {
+      "Agricultural and Biosystems Engineering": {
+        "Harmattan (1st)": [
+          "ABE 111",
+          "MTH 111",
+          "PHY 115",
+          "GNS 111",
+          "ENG 101"
+        ],
+        "Rain (2nd)": [
+          "ABE 112",
+          "MTH 112",
+          "CHM 111",
+          "GNS 112"
+        ]
+      },
+      "Biomedical Engineering": {
+        "Harmattan (1st)": [
+          "BME 111",
+          "MTH 111",
+          "CHM 111",
+          "GNS 111",
+          "ENG 101"
+        ],
+        "Rain (2nd)": [
+          "BME 112",
+          "PHY 115",
+          "BIO 101",
+          "GNS 112"
+        ]
+      },
+      "Chemical Engineering": {
+        "Harmattan (1st)": [
+          "CHE 111",
+          "MTH 111",
+          "PHY 115",
+          "CHM 112",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "CHE 112",
+          "MTH 112",
+          "CHM 111",
+          "GNS 111",
+          "ENG 101"
+        ]
+      },
+      "Civil Engineering": {
+        "Harmattan (1st)": [
+          "CVE 111",
+          "MTH 111",
+          "PHY 115",
+          "GNS 111",
+          "ENG 101"
+        ],
+        "Rain (2nd)": [
+          "CVE 112",
+          "MTH 112",
+          "CHM 111",
+          "GNS 112"
+        ]
+      },
+      "Computer Engineering": {
+        "Harmattan (1st)": [
+          "CPE 111",
+          "MTH 111",
+          "PHY 115",
+          "GNS 111",
+          "ENG 101"
+        ],
+        "Rain (2nd)": [
+          "CPE 112",
+          "MTH 112",
+          "CSC 111",
+          "GNS 112"
+        ]
+      },
+      "Electrical and Electronics Engineering": {
+        "Harmattan (1st)": [
+          "ELE 111",
+          "MTH 111",
+          "PHY 115",
+          "GNS 111",
+          "ENG 101"
+        ],
+        "Rain (2nd)": [
+          "ELE 112",
+          "MTH 112",
+          "CHM 111",
+          "GNS 112"
+        ]
+      },
+      "Food Engineering": {
+        "Harmattan (1st)": [
+          "FOE 111",
+          "MTH 111",
+          "CHM 111",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "FOE 112",
+          "PHY 115",
+          "GNS 111",
+          "ENG 101"
+        ]
+      },
+      "Materials and Metallurgical Engineering": {
+        "Harmattan (1st)": [
+          "MME 111",
+          "MTH 111",
+          "CHM 111",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "MME 112",
+          "PHY 115",
+          "GNS 111",
+          "ENG 101"
+        ]
+      },
+      "Mechanical Engineering": {
+        "Harmattan (1st)": [
+          "MEE 111",
+          "MTH 111",
+          "PHY 115",
+          "GNS 111",
+          "ENG 101"
+        ],
+        "Rain (2nd)": [
+          "MEE 112",
+          "MTH 112",
+          "CHM 111",
+          "GNS 112"
+        ]
+      },
+      "Water Resources and Environmental Engineering": {
+        "Harmattan (1st)": [
+          "WRE 111",
+          "MTH 111",
+          "CHM 111",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "WRE 112",
+          "PHY 115",
+          "GNS 111",
+          "ENG 101"
+        ]
+      }
+    },
+    "Faculty of Environmental Sciences": {
+      "Architecture": {
+        "Harmattan (1st)": [
+          "ARC 101",
+          "ARC 103",
+          "PHY 115",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "ARC 102",
+          "MTH 111",
+          "GNS 111"
+        ]
+      },
+      "Estate Management": {
+        "Harmattan (1st)": [
+          "ESM 101",
+          "ECO 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "ESM 102",
+          "MTH 111",
+          "GNS 112"
+        ]
+      },
+      "Quantity Surveying": {
+        "Harmattan (1st)": [
+          "QTS 101",
+          "MTH 111",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "QTS 102",
+          "PHY 115",
+          "GNS 112"
+        ]
+      },
+      "Surveying and Geoinformatics": {
+        "Harmattan (1st)": [
+          "SVG 101",
+          "MTH 111",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "SVG 102",
+          "PHY 115",
+          "GNS 112"
+        ]
+      },
+      "Urban and Regional Planning": {
+        "Harmattan (1st)": [
+          "URP 101",
+          "ECO 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "URP 102",
+          "MTH 111",
+          "GNS 112"
+        ]
+      }
+    },
+    "Faculty of Law": {
+      "Common Law": {
+        "Harmattan (1st)": [
+          "LAW 101",
+          "LAW 103",
+          "GNS 111",
+          "ENG 101"
+        ],
+        "Rain (2nd)": [
+          "LAW 102",
+          "LAW 104",
+          "GNS 112"
+        ]
+      },
+      "Islamic Law": {
+        "Harmattan (1st)": [
+          "ISL 101",
+          "LAW 101",
+          "GNS 111",
+          "ARA 101"
+        ],
+        "Rain (2nd)": [
+          "ISL 102",
+          "LAW 102",
+          "GNS 112"
+        ]
+      }
+    },
+    "Faculty of Life Sciences": {
+      "Biochemistry": {
+        "Harmattan (1st)": [
+          "BCH 101",
+          "CHM 111",
+          "PHY 115",
+          "BIO 102",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "BCH 102",
+          "CHM 112",
+          "BIO 101",
+          "MTH 111",
+          "GNS 112"
+        ]
+      },
+      "Microbiology": {
+        "Harmattan (1st)": [
+          "MCB 101",
+          "CHM 111",
+          "PHY 115",
+          "BIO 102",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "MCB 102",
+          "CHM 112",
+          "BIO 101",
+          "MTH 111",
+          "GNS 112"
+        ]
+      },
+      "Plant Biology": {
+        "Harmattan (1st)": [
+          "PLB 101",
+          "CHM 111",
+          "PHY 115",
+          "BIO 102",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "PLB 102",
+          "CHM 112",
+          "BIO 101",
+          "GNS 111"
+        ]
+      },
+      "Zoology": {
+        "Harmattan (1st)": [
+          "ZOO 101",
+          "CHM 111",
+          "PHY 115",
+          "BIO 102",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "ZOO 102",
+          "CHM 112",
+          "BIO 101",
+          "GNS 111"
+        ]
+      },
+      "Optometry": {
+        "Harmattan (1st)": [
+          "OPT 101",
+          "CHM 111",
+          "BIO 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "OPT 102",
+          "PHY 115",
+          "MTH 111",
+          "GNS 112"
+        ]
+      }
+    },
+    "Faculty of Management Sciences": {
+      "Accounting": {
+        "Harmattan (1st)": [
+          "ACC 101",
+          "ECO 101",
+          "MTH 111",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "ACC 102",
+          "BUS 101",
+          "GNS 111"
+        ]
+      },
+      "Business Administration": {
+        "Harmattan (1st)": [
+          "BUS 101",
+          "ECO 101",
+          "MTH 111",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "BUS 102",
+          "ACC 101",
+          "GNS 111"
+        ]
+      },
+      "Finance": {
+        "Harmattan (1st)": [
+          "FIN 101",
+          "ECO 101",
+          "MTH 111",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "FIN 102",
+          "ACC 101",
+          "GNS 111"
+        ]
+      },
+      "Industrial Relations and Personnel Management": {
+        "Harmattan (1st)": [
+          "IRP 101",
+          "BUS 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "IRP 102",
+          "ECO 101",
+          "GNS 112"
+        ]
+      },
+      "Marketing": {
+        "Harmattan (1st)": [
+          "MKT 101",
+          "BUS 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "MKT 102",
+          "ECO 101",
+          "GNS 112"
+        ]
+      },
+      "Public Administration": {
+        "Harmattan (1st)": [
+          "PAD 101",
+          "POL 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "PAD 102",
+          "BUS 101",
+          "GNS 112"
+        ]
+      }
+    },
+    "Faculty of Pharmaceutical Sciences": {
+      "Pharmacy": {
+        "Harmattan (1st)": [
+          "PHA 101",
+          "CHM 111",
+          "PHY 115",
+          "BIO 102",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "PHA 102",
+          "CHM 112",
+          "BIO 101",
+          "MTH 111",
+          "GNS 112"
+        ]
+      }
+    },
+    "Faculty of Physical Sciences": {
+      "Chemistry": {
+        "Harmattan (1st)": [
+          "CHM 111",
+          "CHM 113",
+          "PHY 115",
+          "MTH 112",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "CHM 112",
+          "CHM 114",
+          "MTH 111",
+          "BIO 101",
+          "GNS 112"
+        ]
+      },
+      "Geology": {
+        "Harmattan (1st)": [
+          "GEL 101",
+          "CHM 111",
+          "MTH 111",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "GEL 102",
+          "PHY 115",
+          "BIO 101",
+          "GNS 112"
+        ]
+      },
+      "Geophysics": {
+        "Harmattan (1st)": [
+          "GPH 101",
+          "PHY 115",
+          "MTH 111",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "GPH 102",
+          "CHM 111",
+          "MTH 112",
+          "GNS 112"
+        ]
+      },
+      "Industrial Chemistry": {
+        "Harmattan (1st)": [
+          "ICH 101",
+          "CHM 111",
+          "PHY 115",
+          "MTH 112",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "ICH 102",
+          "CHM 112",
+          "MTH 111",
+          "GNS 111"
+        ]
+      },
+      "Mathematics": {
+        "Harmattan (1st)": [
+          "MTH 111",
+          "MTH 113",
+          "STA 111",
+          "CSC 111",
+          "PHY 115",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "MTH 112",
+          "MTH 114",
+          "STA 112",
+          "CSC 112",
+          "GNS 111"
+        ]
+      },
+      "Physics": {
+        "Harmattan (1st)": [
+          "PHY 115",
+          "PHY 135",
+          "MTH 111",
+          "CHM 111",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "PHY 125",
+          "PHY 145",
+          "MTH 112",
+          "CHM 112",
+          "GNS 112"
+        ]
+      },
+      "Statistics": {
+        "Harmattan (1st)": [
+          "STA 111",
+          "STA 113",
+          "MTH 111",
+          "CSC 111",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "STA 112",
+          "STA 114",
+          "MTH 112",
+          "CSC 112",
+          "GNS 112"
+        ]
+      }
+    },
+    "Faculty of Social Sciences": {
+      "Criminology and Security Studies": {
+        "Harmattan (1st)": [
+          "CSS 101",
+          "SOC 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "CSS 102",
+          "PSY 101",
+          "GNS 112"
+        ]
+      },
+      "Economics": {
+        "Harmattan (1st)": [
+          "ECO 101",
+          "ECO 103",
+          "MTH 111",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "ECO 102",
+          "ECO 104",
+          "ACC 101",
+          "GNS 112"
+        ]
+      },
+      "Geography and Environmental Management": {
+        "Harmattan (1st)": [
+          "GEM 101",
+          "GEM 103",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "GEM 102",
+          "ECO 101",
+          "GNS 112"
+        ]
+      },
+      "Political Science": {
+        "Harmattan (1st)": [
+          "POL 101",
+          "POL 103",
+          "HIS 101",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "POL 102",
+          "POL 104",
+          "GNS 111"
+        ]
+      },
+      "Psychology": {
+        "Harmattan (1st)": [
+          "PSY 101",
+          "PSY 103",
+          "BIO 101",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "PSY 102",
+          "SOC 101",
+          "GNS 111"
+        ]
+      },
+      "Social Work": {
+        "Harmattan (1st)": [
+          "SOW 101",
+          "SOC 101",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "SOW 102",
+          "PSY 101",
+          "GNS 112"
+        ]
+      },
+      "Sociology": {
+        "Harmattan (1st)": [
+          "SOC 101",
+          "SOC 103",
+          "PSY 101",
+          "GNS 112"
+        ],
+        "Rain (2nd)": [
+          "SOC 102",
+          "SOC 104",
+          "GNS 111"
+        ]
+      }
+    },
+    "Faculty of Veterinary Medicine": {
+      "Veterinary Medicine": {
+        "Harmattan (1st)": [
+          "VET 101",
+          "CHM 111",
+          "PHY 115",
+          "BIO 102",
+          "GNS 111"
+        ],
+        "Rain (2nd)": [
+          "VET 102",
+          "CHM 112",
+          "BIO 101",
+          "MTH 111",
+          "GNS 112"
+        ]
+      }
+    }
+  }
+}

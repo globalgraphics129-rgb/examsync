@@ -1,0 +1,78 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Helper functions ──────────────────────────────────────────────
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function hasRole(role) {
+      return isAuthenticated() && (
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == role ||
+        request.auth.token.role == role
+      );
+    }
+
+    // ── User profiles ─────────────────────────────────────────────────
+    // Any authenticated user can create their own profile on signup.
+    // Only the user themselves or an admin can update/delete it.
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+      allow update, delete: if request.auth.uid == userId || hasRole('admin');
+    }
+
+    // ── OTP verification codes ────────────────────────────────────────
+    // Authenticated users write their OTP during signup / reset flow.
+    // Users verify by reading their own OTP document (keyed by email).
+    match /otps/{email} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // ── Crowdsourced faculty / department / course data ───────────────
+    // Any authenticated student can add crowdsourced entries.
+    // Only admins can delete or update them.
+    match /crowdsourced_data/{docId} {
+      allow read: if true;
+      allow create: if isAuthenticated();
+      allow update, delete: if hasRole('admin');
+    }
+
+    // ── AI correction rules ───────────────────────────────────────────
+    // Written by the serverless function (admin SDK). Read by all.
+    match /ai_corrections/{docId} {
+      allow read: if true;
+      allow write: if false; // only admin SDK (backend) writes here
+    }
+
+    // ── Universities ──────────────────────────────────────────────────
+    match /universities/{uniId} {
+      allow read: if true;
+      allow write: if hasRole('admin');
+    }
+
+    // ── Timetables and Entries ────────────────────────────────────────
+    match /timetables/{sessionId} {
+      allow read: if isAuthenticated();
+      allow write: if hasRole('classRep') || hasRole('admin');
+
+      match /entries/{entryId} {
+        allow read: if isAuthenticated();
+        allow write: if hasRole('classRep') || hasRole('admin');
+      }
+    }
+
+    // ── Notifications ─────────────────────────────────────────────────
+    match /notifications/{notifId} {
+      allow read: if isAuthenticated() && resource.data.userId == request.auth.uid;
+      allow write: if hasRole('admin') || hasRole('classRep');
+    }
+
+    // ── System Settings ───────────────────────────────────────────────
+    match /settings/global {
+      allow read: if true;
+      allow write: if hasRole('admin');
+    }
+  }
+}

@@ -1,0 +1,172 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@theme {
+  /* Dynamic Theme Palette */
+  --color-surface: var(--bg-surface);
+  --color-surface-card: var(--bg-card);
+  --color-surface-container: var(--bg-container);
+  --color-surface-container-low: var(--bg-container-low);
+  --color-surface-container-high: var(--bg-container-high);
+  --color-on-surface: var(--text-main);
+  --color-on-surface-variant: var(--text-variant);
+  --color-outline: var(--border-color);
+  --color-outline-variant: var(--border-variant);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary-container: var(--on-secondary-container);
+  --color-secondary-fixed: var(--secondary-fixed);
+  --color-on-secondary-fixed: var(--on-secondary-fixed);
+  --color-on-tertiary-container: var(--on-tertiary-container);
+  --color-on-tertiary-fixed-variant: var(--on-tertiary-fixed-variant);
+  --color-tertiary-fixed: var(--tertiary-fixed);
+  --color-status-success: #22C55E;
+  --color-status-warning: #F59E0B;
+  --color-error: #ba1a1a;
+
+  /* Fonts */
+  --font-sora: "Sora", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
+  /* Borders */
+  --radius-card: 0.75rem;   /* 12px */
+  --radius-modal: 1.5rem;    /* 24px */
+  --radius-pill: 9999px;
+  --radius-input: 0.5rem;    /* 8px */
+
+  /* Shadows */
+  --shadow-card: var(--shadow-card-v);
+  --shadow-card-hover: var(--shadow-card-hover-v);
+  --shadow-modal: var(--shadow-modal-v);
+}
+
+:root {
+  /* LIGHT THEME (Default Academic Vitality) */
+  --bg-surface: #f8f9fd;
+  --bg-card: #FFFFFF;
+  --bg-container: #f0f2f5;
+  --bg-container-low: #f8fafc;
+  --bg-container-high: #e2e8f0;
+  --text-main: #0f172a;
+  --text-variant: #475569;
+  --border-color: #cbd5e1;
+  --border-variant: #e2e8f0;
+  --primary: #4f46e5;
+  --on-primary: #ffffff;
+  --primary-container: #e0e7ff;
+  --on-primary-container: #312e81;
+  --secondary: #835500;
+  --on-secondary: #ffffff;
+  --secondary-container: #feae2c;
+  --on-secondary-container: #6b4500;
+  --secondary-fixed: #ffddb4;
+  --on-secondary-fixed: #291800;
+  --on-tertiary-container: #3e84f8;
+  --on-tertiary-fixed-variant: #004395;
+  --tertiary-fixed: #d8e2ff;
+  
+  --shadow-card-v: 0px 4px 20px rgba(0, 7, 27, 0.08);
+  --shadow-card-hover-v: 0px 8px 32px rgba(0, 7, 27, 0.12);
+  --shadow-modal-v: 0px 20px 60px rgba(0, 7, 27, 0.15);
+}
+
+[data-theme='dark'] {
+  --bg-surface: #020617;
+  --bg-card: #0f172a;
+  --bg-container: #1e293b;
+  --bg-container-low: #0f172a;
+  --bg-container-high: #334155;
+  --text-main: #f8fafc;
+  --text-variant: #94a3b8;
+  --border-color: #334155;
+  --border-variant: #1e293b;
+  --primary: #818cf8;
+  --on-primary: #ffffff;
+  --primary-container: #312e81;
+  --on-primary-container: #e0e7ff;
+  --secondary: #f59e0b;
+  --on-secondary: #000000;
+  --secondary-container: #d97706;
+  --on-secondary-container: #fffbeb;
+  --secondary-fixed: #fbbf24;
+  --on-secondary-fixed: #78350f;
+  --on-tertiary-container: #60a5fa;
+  --on-tertiary-fixed-variant: #93c5fd;
+  --tertiary-fixed: #3b82f6;
+
+  --shadow-card-v: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  --shadow-card-hover-v: 0px 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-modal-v: 0px 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme='ocean'] {
+  --bg-surface: #000B18;
+  --bg-card: #001226;
+  --bg-container: #001C3A;
+  --bg-container-low: #000F1E;
+  --bg-container-high: #00264D;
+  --text-main: #E2F1FF;
+  --text-variant: #8BB4E2;
+  --border-color: #003B73;
+  --border-variant: #002855;
+  --primary: #00D4FF;
+  --on-primary: #001226;
+  --primary-container: #004C8C;
+  --on-primary-container: #99D5FF;
+  --secondary: #00FFCC;
+  --on-secondary: #00261E;
+  --secondary-container: #008C73;
+  --on-secondary-container: #CCFFF5;
+  --secondary-fixed: #00CC99;
+  --on-secondary-fixed: #004D39;
+  --on-tertiary-container: #FF5E99;
+  --on-tertiary-fixed-variant: #FF99C2;
+  --tertiary-fixed: #FF0066;
+
+  --shadow-card-v: 0px 4px 20px rgba(0, 212, 255, 0.05);
+  --shadow-card-hover-v: 0px 8px 32px rgba(0, 212, 255, 0.1);
+  --shadow-modal-v: 0px 20px 60px rgba(0, 11, 24, 0.8);
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-body-md overflow-x-hidden transition-colors duration-500;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .signature-border-amber { 
+    border-left: 4px solid var(--color-secondary-container); 
+  }
+  
+  .signature-border-blue { 
+    border-left: 4px solid var(--color-on-tertiary-container); 
+  }
+  
+  .pulse-active { 
+    animation: pulse-soft 2s infinite ease-in-out; 
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 0.8; 
+    transform: scale(1.02); 
+  }
+}
