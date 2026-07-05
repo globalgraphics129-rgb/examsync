@@ -62,7 +62,7 @@ Always assume the timezone is the user's local timezone. Today is ${new Date().t
     const currentMessage = geminiHistory.pop();
 
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash",
+      model: "gemini-2.0-flash",
       systemInstruction: { role: "user", parts: [{ text: systemInstruction }] },
       tools: tools.length > 0 ? tools : undefined
     });

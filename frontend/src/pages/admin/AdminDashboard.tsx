@@ -5,11 +5,12 @@ import Logo from '../../components/ui/Logo';
 import { collection, getDocs, deleteDoc, doc, addDoc, serverTimestamp, query, where } from 'firebase/firestore';
 import { db } from '../../config/firebase';
 import { useAcademicData } from '../../hooks/useAcademicData';
+import api from '../../lib/api';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const { uniData } = useAcademicData();
-  const [activeTab, setActiveTab] = useState<'overview' | 'corrections' | 'data' | 'cms' | 'settings' | 'activity'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'corrections' | 'data' | 'cms' | 'settings' | 'activity' | 'waitlist'>('overview');
 
   const [stats, setStats] = useState({
     totalUsers: 0,
@@ -22,6 +23,16 @@ const AdminDashboard = () => {
   const [activityLogs, setActivityLogs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Waitlist State
+  const [waitlist, setWaitlist] = useState<any[]>([]);
+  const [selectedWaitlistUser, setSelectedWaitlistUser] = useState<any>(null);
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  const [emailSubject, setEmailSubject] = useState('');
+  const [emailBody, setEmailBody] = useState('');
+  const [sendingEmail, setSendingEmail] = useState(false);
+  const [emailSuccess, setEmailSuccess] = useState('');
+  const [actionError, setActionError] = useState('');
 
   // User Details State
   const [selectedUser, setSelectedUser] = useState<any>(null);
@@ -113,6 +124,16 @@ const AdminDashboard = () => {
         const logsList = logsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as any))
           .sort((a, b) => (b.timestamp?.toMillis() || 0) - (a.timestamp?.toMillis() || 0));
         setActivityLogs(logsList);
+
+        // Fetch Waitlist
+        try {
+          const waitlistRes = await api.post('/admin-waitlist', { action: 'fetch' });
+          if (waitlistRes.data.success) {
+            setWaitlist(waitlistRes.data.waitlist || []);
+          }
+        } catch (waitlistErr) {
+          console.error('Failed to fetch waitlist:', waitlistErr);
+        }
 
         // Fetch CMS and Site Settings
         const { doc, getDoc } = await import('firebase/firestore');
@@ -342,6 +363,69 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleDeleteWaitlist = async (id: string) => {
+    if (!window.confirm('Are you sure you want to delete this email from the waitlist?')) return;
+    setActionError('');
+    try {
+      const res = await api.post('/admin-waitlist', { action: 'delete', emailId: id });
+      if (res.data.success) {
+        setWaitlist(prev => prev.filter(entry => entry.id !== id));
+      } else {
+        setActionError(res.data.error || 'Failed to delete');
+      }
+    } catch (err: any) {
+      setActionError(err.response?.data?.error || 'Failed to delete entry');
+    }
+  };
+
+  const openEmailModal = (user: any) => {
+    setSelectedWaitlistUser(user);
+    setEmailSubject('');
+    setEmailBody('');
+    setEmailSuccess('');
+    setActionError('');
+    setIsEmailModalOpen(true);
+  };
+
+  const handleSendEmail = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedWaitlistUser) return;
+    
+    setSendingEmail(true);
+    setActionError('');
+    setEmailSuccess('');
+
+    try {
+      const htmlContent = `
+        <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 600px; margin: 0 auto;">
+          ${emailBody.replace(/\n/g, '<br/>')}
+          <br/><br/>
+          <hr style="border: none; border-top: 1px solid #eee;" />
+          <p style="font-size: 12px; color: #888;">ExamSync - Your Academic Intelligence Platform</p>
+        </div>
+      `;
+
+      const res = await api.post('/admin-waitlist', {
+        action: 'send_email',
+        emailId: selectedWaitlistUser.id,
+        subject: emailSubject,
+        htmlContent
+      });
+
+      if (res.data.success) {
+        setEmailSuccess('Email sent successfully!');
+        logActivity('waitlist_email', `Sent email to ${selectedWaitlistUser.email}`);
+        setTimeout(() => setIsEmailModalOpen(false), 2000);
+      } else {
+        setActionError(res.data.error || 'Failed to send email');
+      }
+    } catch (err: any) {
+      setActionError(err.response?.data?.error || 'Failed to send email');
+    } finally {
+      setSendingEmail(false);
+    }
+  };
+
   const filteredUsers = users.filter(u => 
     (u.name || '').toLowerCase().includes(searchQuery.toLowerCase()) || 
     (u.email || '').toLowerCase().includes(searchQuery.toLowerCase())
@@ -374,6 +458,7 @@ const AdminDashboard = () => {
              </button>
              <button onClick={() => setActiveTab('data')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${activeTab === 'data' ? 'bg-surface-container text-primary' : 'text-on-surface-variant hover:text-on-surface'}`}>Data</button>
              <button onClick={() => setActiveTab('cms')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${activeTab === 'cms' ? 'bg-surface-container text-primary' : 'text-on-surface-variant hover:text-on-surface'}`}>CMS</button>
+             <button onClick={() => setActiveTab('waitlist')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${activeTab === 'waitlist' ? 'bg-surface-container text-primary' : 'text-on-surface-variant hover:text-on-surface'}`}>Waitlist</button>
              <button onClick={() => setActiveTab('activity')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${activeTab === 'activity' ? 'bg-surface-container text-primary' : 'text-on-surface-variant hover:text-on-surface'}`}>Activity</button>
              <button onClick={() => setActiveTab('settings')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${activeTab === 'settings' ? 'bg-surface-container text-primary' : 'text-on-surface-variant hover:text-on-surface'}`}>Settings</button>
           </div>
@@ -396,6 +481,7 @@ const AdminDashboard = () => {
                   {activeTab === 'corrections' && 'Pending Corrections'}
                   {activeTab === 'data' && 'Data Management'}
                   {activeTab === 'cms' && 'CMS: Site Content'}
+                  {activeTab === 'waitlist' && 'Waitlist Registrations'}
                   {activeTab === 'activity' && 'Activity Logs'}
                   {activeTab === 'settings' && 'Global Site Settings'}
                 </h1>
@@ -404,6 +490,7 @@ const AdminDashboard = () => {
                   {activeTab === 'corrections' && 'Review missing data submissions from students.'}
                   {activeTab === 'data' && 'Directly add new universities, faculties, departments, and courses.'}
                   {activeTab === 'cms' && 'Manage Landing Page text, features, and announcements.'}
+                  {activeTab === 'waitlist' && 'Manage waitlist emails and send updates.'}
                   {activeTab === 'activity' && 'Track real-time student activity and system events.'}
                   {activeTab === 'settings' && 'Configure maintenance mode and system-wide behavior.'}
                 </p>
@@ -977,6 +1064,149 @@ const AdminDashboard = () => {
             </button>
           </motion.div>
         )}
+
+        {activeTab === 'waitlist' && (
+          <motion.div initial={{opacity: 0}} animate={{opacity: 1}} className="bg-surface-card border border-outline/10 rounded-2xl shadow-card overflow-hidden">
+            <div className="p-6 border-b border-outline/10 bg-outline/5 flex justify-between items-center">
+              <h2 className="text-xl font-bold text-on-surface">Waitlist Registrations</h2>
+              <span className="bg-primary/20 text-primary text-xs font-bold px-3 py-1 rounded-full border border-primary/30">
+                {waitlist.length} Registered
+              </span>
+            </div>
+            
+            {actionError && (
+              <div className="p-4 bg-error/10 text-error text-sm font-bold border-b border-outline/10">
+                {actionError}
+              </div>
+            )}
+
+            <div className="overflow-x-auto max-h-[600px]">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="border-b border-outline/10 text-xs uppercase text-on-surface-variant/80 bg-surface-container/50">
+                    <th className="p-4 font-medium">Email Address</th>
+                    <th className="p-4 font-medium">Joined Date</th>
+                    <th className="p-4 font-medium text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="text-sm">
+                  {waitlist.length === 0 ? (
+                    <tr>
+                      <td colSpan={3} className="p-8 text-center text-on-surface-variant/80">No waitlist signups yet.</td>
+                    </tr>
+                  ) : (
+                    waitlist.map((entry) => (
+                      <tr key={entry.id} className="border-b border-outline/5 hover:bg-outline/5 transition-colors">
+                        <td className="p-4 font-bold text-on-surface">{entry.email}</td>
+                        <td className="p-4 text-on-surface-variant">
+                          {new Date(entry.timestamp).toLocaleString()}
+                        </td>
+                        <td className="p-4 text-right">
+                          <div className="flex justify-end gap-3">
+                            <button 
+                              onClick={() => openEmailModal(entry)}
+                              className="text-xs bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20 rounded px-3 py-1.5 font-bold transition-all animate-in fade-in"
+                            >
+                              Send Email
+                            </button>
+                            <button 
+                              onClick={() => handleDeleteWaitlist(entry.id)}
+                              className="text-xs bg-error/10 text-error hover:bg-error/20 border border-error/20 rounded px-3 py-1.5 font-bold transition-all animate-in fade-in"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Waitlist Email Modal */}
+        <AnimatePresence>
+          {isEmailModalOpen && selectedWaitlistUser && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-surface/80 backdrop-blur-sm">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="bg-surface-card border border-outline/10 w-full max-w-lg rounded-[2rem] shadow-modal overflow-hidden"
+              >
+                <div className="p-8 space-y-6">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 className="text-2xl font-black text-on-surface">Compose Email</h3>
+                      <p className="text-xs text-on-surface-variant">To: {selectedWaitlistUser.email}</p>
+                    </div>
+                    <button onClick={() => setIsEmailModalOpen(false)} className="p-2 hover:bg-outline/5 rounded-full transition-colors">
+                      <span className="material-symbols-outlined">close</span>
+                    </button>
+                  </div>
+
+                  {emailSuccess && (
+                    <div className="p-4 bg-status-success/10 text-status-success text-sm font-bold rounded-xl border border-status-success/20">
+                      {emailSuccess}
+                    </div>
+                  )}
+
+                  {actionError && (
+                    <div className="p-4 bg-error/10 text-error text-sm font-bold rounded-xl border border-error/20">
+                      {actionError}
+                    </div>
+                  )}
+
+                  <form onSubmit={handleSendEmail} className="space-y-4">
+                    <div className="space-y-1">
+                      <label className="block text-[10px] font-bold text-on-surface-variant uppercase tracking-wider ml-1">Subject</label>
+                      <input 
+                        type="text" 
+                        required 
+                        value={emailSubject}
+                        onChange={e => setEmailSubject(e.target.value)}
+                        placeholder="Welcome to ExamSync!"
+                        className="w-full bg-surface-container border border-outline/10 rounded-xl px-4 py-3 text-sm focus:border-primary focus:outline-none"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="block text-[10px] font-bold text-on-surface-variant uppercase tracking-wider ml-1">Message Body</label>
+                      <textarea 
+                        required 
+                        rows={6}
+                        value={emailBody}
+                        onChange={e => setEmailBody(e.target.value)}
+                        placeholder="Write your email here..."
+                        className="w-full bg-surface-container border border-outline/10 rounded-xl px-4 py-3 text-sm focus:border-primary focus:outline-none resize-none"
+                      />
+                    </div>
+
+                    <button 
+                      type="submit" 
+                      disabled={sendingEmail}
+                      className="w-full bg-primary hover:bg-primary/90 disabled:opacity-50 text-on-primary font-black py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      {sendingEmail ? (
+                        <>
+                          <motion.span animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }} className="material-symbols-outlined text-[18px]">sync</motion.span>
+                          <span>Sending email...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Send Email</span>
+                          <span className="material-symbols-outlined text-[18px]">send</span>
+                        </>
+                      )}
+                    </button>
+                  </form>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
 
         {/* User Details Modal */}
         <AnimatePresence>

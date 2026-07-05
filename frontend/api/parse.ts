@@ -25,7 +25,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     let contentToAnalyze = text || '';
 
@@ -50,8 +50,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   ]
 }`;
 
+    let contentParts: any[];
+
+    if (pdfBase64) {
+      contentParts = [
+        {
+          inlineData: {
+            mimeType: 'application/pdf',
+            data: pdfBase64,
+          }
+        },
+        { text: systemPrompt }
+      ];
+    } else {
+      contentParts = [{ text: `${systemPrompt}\n\nText to analyze:\n${text}` }];
+    }
+
     const result = await model.generateContent({
-      contents: [{ role: 'user', parts: [{ text: `${systemPrompt}\n\nText to analyze:\n${contentToAnalyze}` }] }]
+      contents: [{ role: 'user', parts: contentParts }]
     });
 
     const responseText = result.response.text();

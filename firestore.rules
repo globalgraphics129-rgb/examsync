@@ -43,7 +43,18 @@ service cloud.firestore {
     // Written by the serverless function (admin SDK). Read by all.
     match /ai_corrections/{docId} {
       allow read: if true;
-      allow write: if false; // only admin SDK (backend) writes here
+      allow write: if hasRole('admin'); // Admin can write from dashboard
+    }
+
+    // ── Pending Corrections ───────────────────────────────────────────
+    match /pending_corrections/{docId} {
+      allow create: if true; // anyone can submit
+      allow read, update, delete: if hasRole('admin');
+    }
+
+    // ── Waitlist ──────────────────────────────────────────────────────
+    match /waitlist/{docId} {
+      allow create: if true;
     }
 
     // ── Universities ──────────────────────────────────────────────────

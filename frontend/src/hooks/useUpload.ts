@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { db } from '../config/firebase';
 import api from '../lib/api';
 import type { ExamEntry } from '../types/exam.types';
 
@@ -23,7 +25,7 @@ export const useUpload = () => {
 
       const pdfBase64 = await base64Promise;
       
-      const response = await api.post<any>('/upload/parse', {
+      const response = await api.post<any>('/parse', {
         pdfBase64,
         metadata: { fileName: file.name },
       });
@@ -45,14 +47,18 @@ export const useUpload = () => {
     setIsPublishing(true);
     setError(null);
     try {
-      await api.post('/upload/publish', {
-        entries: extractedEntries,
-        sessionMetadata,
-      });
+      const promises = extractedEntries.map(entry =>
+        addDoc(collection(db, 'timetable_entries'), {
+          ...entry,
+          ...sessionMetadata,
+          publishedAt: serverTimestamp(),
+        })
+      );
+      await Promise.all(promises);
       setExtractedEntries([]);
       return true;
     } catch (err: any) {
-      setError(err.response?.data?.error || 'Failed to publish timetable');
+      setError(err.message || 'Failed to publish timetable');
       return false;
     } finally {
       setIsPublishing(false);

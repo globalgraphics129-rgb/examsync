@@ -1,6 +1,6 @@
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import LandingPage from '../pages/Landing';
-import StudentDashboard from '../pages/student/StudentDashboard';
+import DashboardDispatcher from '../pages/DashboardDispatcher';
 import UploadPage from '../pages/student/Upload';
 import LoginPage from '../pages/Auth';
 import VerifyOTP from '../pages/VerifyOTP';
@@ -44,7 +44,7 @@ const AppRouter = () => {
         <Route path="/terms" element={<TermsOfService />} />
         <Route path="/maintenance" element={<Maintenance />} />
 
-        {/* Admin-only route — protected by role check */}
+        {/* Protected Admin Routes */}
         <Route element={<AdminRoute />}>
           <Route path="/admin" element={<AdminDashboard />} />
         </Route>
@@ -53,7 +53,7 @@ const AppRouter = () => {
           <Route path="/complete-profile" element={<CompleteOnboarding />} />
           {/* Main Application Shell for logged-in users */}
           <Route element={<AppShell><Outlet /></AppShell>}>
-            <Route path="/dashboard" element={<StudentDashboard />} />
+            <Route path="/dashboard" element={<DashboardDispatcher />} />
             <Route path="/upload" element={<UploadPage />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Route>

@@ -5,11 +5,12 @@ import {
   signOut,
   deleteUser as firebaseDeleteUser,
   GoogleAuthProvider,
-  linkWithPopup
+  linkWithPopup,
+  signInWithPopup
 } from 'firebase/auth';
 import type { User as FirebaseUser } from 'firebase/auth';
 import { auth, db, storage } from '../config/firebase';
-import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, deleteDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useAuthStore } from '../store/authStore';
 import type { User } from '../store/authStore';
@@ -45,18 +46,24 @@ export const useAuth = () => {
     try {
       // ── Admin backdoor ──
       if (email === 'admin@examsync.com' && password === 'admin2026') {
-        setUser({
-          uid: 'admin_001',
-          email,
-          role: 'admin',
-          name: 'Glory Adeniran',
-          uniId: 'mock_uni_001',
-          faculty: 'Admin',
-          department: 'System',
-          level: 400,
-          matricNumber: '',
-        });
-        return true;
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+          return true;
+        } catch (fbErr: any) {
+          if (
+            fbErr.code === 'auth/user-not-found' || 
+            fbErr.code === 'auth/invalid-credential' || 
+            fbErr.message?.includes('user-not-found') || 
+            fbErr.message?.includes('INVALID_LOGIN_CREDENTIALS')
+          ) {
+            // First register the admin user via the API
+            await api.post('/signup', { email, password, name: 'Glory Adeniran' });
+            // Then sign in
+            await signInWithEmailAndPassword(auth, email, password);
+            return true;
+          }
+          throw fbErr;
+        }
       }
 
       await signInWithEmailAndPassword(auth, email, password);
@@ -95,13 +102,60 @@ export const useAuth = () => {
     }
   };
 
+  const loginWithGoogle = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      const firebaseUser = result.user;
+
+      const userRef = doc(db, 'users', firebaseUser.uid);
+      const userDoc = await getDoc(userRef);
+
+      if (!userDoc.exists()) {
+        const newUser: User = {
+          uid: firebaseUser.uid,
+          name: firebaseUser.displayName || 'Google User',
+          email: firebaseUser.email || '',
+          role: 'student',
+          isVerified: true,
+          onboardingCompleted: false,
+          uniId: '',
+          faculty: '',
+          department: '',
+          semester: '',
+          courses: [],
+        };
+        await setDoc(userRef, {
+          name: newUser.name,
+          email: newUser.email,
+          role: newUser.role,
+          isVerified: newUser.isVerified,
+          onboardingCompleted: newUser.onboardingCompleted,
+          uniId: newUser.uniId,
+          faculty: newUser.faculty,
+          department: newUser.department,
+          semester: newUser.semester,
+          courses: newUser.courses,
+          createdAt: serverTimestamp()
+        });
+        setUser(newUser);
+      } else {
+        setUser({ uid: firebaseUser.uid, ...userDoc.data() } as User);
+      }
+      return true;
+    } catch (err: any) {
+      console.error('Google Auth Error:', err);
+      setError(err.message);
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const logout = async () => {
     try {
-      // Check if admin backdoor
-      if (user?.uid === 'admin_001') {
-        storeLogout();
-        return;
-      }
       await signOut(auth);
       storeLogout();
     } catch (err: any) {
@@ -200,6 +254,7 @@ export const useAuth = () => {
     isLoading,
     login,
     signup,
+    loginWithGoogle,
     logout,
     updateProfile,
     uploadProfilePicture,

@@ -21,10 +21,10 @@ app.use(express.json({ limit: '20mb' }));
 async function loadHandler(name) {
   try {
     // Try the compiled JS version first (after tsc build)
-    const mod = require(path.join(__dirname, 'api', name + '.js'));
+    const mod = require(path.join(__dirname, 'dist', 'api', name + '.js'));
     return mod.default || mod;
   } catch {
-    console.warn(`[dev-server] Could not load api/${name}.js — route will return 501`);
+    console.warn(`[dev-server] Could not load dist/api/${name}.js — route will return 501`);
     return null;
   }
 }

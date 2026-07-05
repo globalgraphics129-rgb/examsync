@@ -45,13 +45,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const uid = userRecord.uid;
 
+    const role = email === 'admin@examsync.com' ? 'admin' : 'student';
+    const isVerified = email === 'admin@examsync.com';
+    const onboardingCompleted = email === 'admin@examsync.com';
+
     // 2. Create user profile in Firestore
     await db.collection('users').doc(uid).set({
       name,
       email,
-      role: 'student',
-      isVerified: false,
-      onboardingCompleted: false,
+      role,
+      isVerified,
+      onboardingCompleted,
       uniId: '',
       faculty: '',
       department: '',
